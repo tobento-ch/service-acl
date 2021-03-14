@@ -39,6 +39,6 @@
         "test": "phpunit --testdox --colors=always"
     },
     "suggest": {
-        "tobento-ch/model": "Needed to support role model."
+        "tobento/model": "Needed to support role model."
     }
 }
