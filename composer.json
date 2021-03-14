@@ -16,6 +16,8 @@
             "homepage": "https://www.tobento.ch"
         }
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=8.0",
         "tobento-ch/helper-function": "^1.0"
