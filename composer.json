@@ -1,5 +1,5 @@
 {
-    "name": "tobento-ch/acl",
+    "name": "tobento/acl",
     "type": "library",
     "description": "A simple role and user-level access control system.",
     "keywords": [
@@ -20,7 +20,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
-        "tobento-ch/helper-function": "^1.0"
+        "tobento/helper-function": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
