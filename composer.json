@@ -1,0 +1,42 @@
+{
+    "name": "tobento-ch/acl",
+    "type": "library",
+    "description": "A simple role and user-level access control system.",
+    "keywords": [
+		"tobento",
+		"package",
+		"acl"
+	],
+    "homepage": "https://www.tobento.ch",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Strub",
+            "email": "info@tobento.ch",
+            "homepage": "https://www.tobento.ch"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+		"tobento/helper-functions": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },	
+    "autoload": {
+        "psr-4": {
+            "Tobento\\Service\\Acl\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tobento\\Service\\Acl\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --testdox --colors=always"
+    },
+    "suggest": {
+        "tobento-ch/model": "Needed to support role model."
+    }
+}
