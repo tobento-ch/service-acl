@@ -3,9 +3,9 @@
     "type": "library",
     "description": "A simple role and user-level access control system.",
     "keywords": [
-		"tobento",
-		"package",
-		"acl"
+        "tobento",
+        "package",
+        "acl"
 	],
     "homepage": "https://www.tobento.ch",
     "license": "MIT",
