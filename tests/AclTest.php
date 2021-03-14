@@ -3,7 +3,7 @@
 /**
  * TOBENTO
  *
- * @copyright	Tobias Strub, TOBENTO
+ * @copyright    Tobias Strub, TOBENTO
  * @license     MIT License, see LICENSE file distributed with this source code.
  * @author      Tobias Strub
  * @link        https://www.tobento.ch
@@ -31,10 +31,10 @@ class AclTest extends TestCase
 
     public function testSetAndGetCurrentUser()
     {
-		$acl = new Acl();
-		$acl->setCurrentUser(new User('Nick'));
-		
-		$this->assertSame('Nick', $acl->getCurrentUser());				
-	}
+        $acl = new Acl();
+        $acl->setCurrentUser(new User('Nick'));
+        
+        $this->assertSame('Nick', $acl->getCurrentUser());                
+    }
  
 }
