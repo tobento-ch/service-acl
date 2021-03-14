@@ -3,7 +3,7 @@
 /**
  * TOBENTO
  *
- * @copyright	Tobias Strub, TOBENTO
+ * @copyright    Tobias Strub, TOBENTO
  * @license     MIT License, see LICENSE file distributed with this source code.
  * @author      Tobias Strub
  * @link        https://www.tobento.ch
@@ -21,14 +21,14 @@ use Tobento\Service\Acl\AuthorizableAware;
  */
 class User implements Authorizable
 {
-	use AuthorizableAware;
-	
-	public function __construct(
+    use AuthorizableAware;
+    
+    public function __construct(
         protected string $name,
     ) {}
-	
-	public function name(): string
-	{
-		return $this->name;
-	}	
+    
+    public function name(): string
+    {
+        return $this->name;
+    }    
 }
