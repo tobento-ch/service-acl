@@ -3,7 +3,7 @@
 /**
  * TOBENTO
  *
- * @copyright	Tobias Strub, TOBENTO
+ * @copyright    Tobias Strub, TOBENTO
  * @license     MIT License, see LICENSE file distributed with this source code.
  * @author      Tobias Strub
  * @link        https://www.tobento.ch
@@ -18,38 +18,38 @@ namespace Tobento\Service\Acl;
  */
 interface RoleInterface extends Permissionable
 {
-	/**
-	 * Get the id
-	 *
-	 * @return string
-	 */
-	public function id(): int;
-	
-	/**
-	 * Get the key
-	 *
-	 * @return string
-	 */
-	public function key(): string;
+    /**
+     * Get the id
+     *
+     * @return string
+     */
+    public function id(): int;
+    
+    /**
+     * Get the key
+     *
+     * @return string
+     */
+    public function key(): string;
 
-	/**
-	 * If the role is active
-	 *
-	 * @return bool
-	 */
-	public function active(): bool;
+    /**
+     * If the role is active
+     *
+     * @return bool
+     */
+    public function active(): bool;
 
-	/**
-	 * Get the area
-	 *
-	 * @return string
-	 */
-	public function area(): string;
+    /**
+     * Get the area
+     *
+     * @return string
+     */
+    public function area(): string;
 
-	/**
-	 * Get the name
-	 *
-	 * @return string
-	 */
-	public function name(): string;
+    /**
+     * Get the name
+     *
+     * @return string
+     */
+    public function name(): string;
 }
