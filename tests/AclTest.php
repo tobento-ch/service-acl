@@ -32,9 +32,12 @@ class AclTest extends TestCase
     public function testSetAndGetCurrentUser()
     {
         $acl = new Acl();
-        $acl->setCurrentUser(new User('Nick'));
         
-        $this->assertSame('Nick', $acl->getCurrentUser());                
+        $user = new User('Nick');
+        
+        $acl->setCurrentUser($user);
+        
+        $this->assertSame($user, $acl->getCurrentUser());                
     }
  
 }
