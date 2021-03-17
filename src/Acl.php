@@ -71,48 +71,7 @@ class Acl implements AclInterface
     public function getCurrentUser(): ?Authorizable
     {
         return $this->currentUser;
-    }
-
-    /**
-     * Verifies input permissions.
-     *
-     * @param array The input permissions ['user_create' => 0, 'user_update' => 1]
-     * @param RoleInterface
-     * @return The verified permissions ['user_create', 'user_update']
-     */    
-    public function verifyInputPermissions(array $permissions, RoleInterface $role): array
-    {
-        $verified = [];
-        $areaKey = $role->area();
-        $allowedAreaKeys = $this->areasToRules[$areaKey] ?? [];
-        
-        foreach($permissions as $key => $value) {
-            // input key to ruleKey
-            $key = str_replace(array('_'), array('.'), $key);
-            
-            if ($value !== '1') {
-                continue;
-            }
-            
-            if (!is_string($key)) {
-                continue;
-            }
-                
-            if ($this->getRule($key) === null) {
-                continue;
-            }
-            
-            $rule = $this->getRule($key);
-        
-            if (!in_array($rule->getArea(), $allowedAreaKeys)) {
-                continue;
-            }
-            
-            $verified[] = $rule->getKey();
-        }
-
-        return array_unique($verified);
-    }    
+    } 
 
     /**
      * Create and adds a new Rule.

@@ -34,15 +34,6 @@ interface AclInterface extends Permissionable
     public function getCurrentUser(): ?Authorizable;    
 
     /**
-     * Verifies input permissions.
-     *
-     * @param array The input permissions ['user_create' => 0, 'user_update' => 1]
-     * @param RoleInterface
-     * @return The verified permissions ['user_create', 'user_update']
-     */    
-    public function verifyInputPermissions(array $permissions, RoleInterface $role): array;
-
-    /**
      * Create and adds a new Rule.
      *
      * @param string A rule key
