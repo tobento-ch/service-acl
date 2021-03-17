@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Tobento\Service\Acl;
 
-use Tobento\Service\Acl\RoleInterface;
-use Tobento\Service\Acl\HasPermissions;
-
 /**
  * Role
  */
