@@ -167,8 +167,8 @@ class AclTest extends TestCase
         
         $acl->addPermissions(['articles.read', 'articles.create']);
                 
-        $guestRole = new Role(1, 'guest', 'frontend');
-        $editorRole = new Role(2, 'editor', 'backend');
+        $guestRole = new Role(1, 'guest', ['frontend']);
+        $editorRole = new Role(2, 'editor', ['backend']);
         
         $user = (new User('Nick'))->setRole($guestRole);
         
