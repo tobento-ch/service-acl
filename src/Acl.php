@@ -133,13 +133,17 @@ class Acl implements AclInterface
     /**
      * Sets the roles.
      *
-     * @param array The roles.
+     * @param array The roles [RoleInterface, ...]
      * @return static $this
      */    
     public function setRoles(array $roles): static
     {
         foreach($roles as $role)
         {
+            if (! $role instanceof RoleInterface) {
+                continue;
+            }
+            
             foreach($role->areas() as $area)
             {
                 $this->rolesByArea[$area][$role->key()] = $role;    
