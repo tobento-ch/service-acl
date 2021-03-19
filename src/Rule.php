@@ -170,11 +170,7 @@ class Rule implements RuleInterface
         if ($this->needsPermission)
         {
             // area check
-            $allowedAreaKeys = $acl->getAreasToRules()[$user->role()->area()] ?? [];
-            
-            if ($this->getArea() !== $user->role()->area()
-                && !in_array($this->getArea(), $allowedAreaKeys)
-            ) {
+            if (!in_array($this->getArea(), $user->role()->areas())) {
                 return false;
             }
             
