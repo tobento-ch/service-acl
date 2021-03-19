@@ -25,14 +25,14 @@ class Role implements RoleInterface
      *
      * @param int A role id.
      * @param string A role key such as 'editor'.
-     * @param string The area for the role such as 'frontend'
+     * @param array The areas for the role ['frontend', 'api'].
      * @param bool If the role is active.
      * @param int A role name such as 'Editor'.
      */    
     public function __construct(
         protected int $id,
         protected string $key,
-        protected string $area = 'frontend',
+        protected array $areas = ['frontend'],
         protected bool $active = true,
         protected null|string $name = null,
     ) {}
@@ -66,16 +66,16 @@ class Role implements RoleInterface
     {
         return $this->active;
     }
-
+    
     /**
-     * Get the area
+     * Get the areas
      *
-     * @return string
+     * @return array ['frontend', 'api']
      */
-    public function area(): string
+    public function areas(): array
     {
-        return $this->area;
-    }
+        return $this->areas;
+    }    
 
     /**
      * Get the name

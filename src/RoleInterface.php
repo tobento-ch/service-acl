@@ -40,11 +40,11 @@ interface RoleInterface extends Permissionable
     public function active(): bool;
 
     /**
-     * Get the area
+     * Get the areas
      *
-     * @return string
+     * @return array ['frontend', 'api']
      */
-    public function area(): string;
+    public function areas(): array;
 
     /**
      * Get the name
