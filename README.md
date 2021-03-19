@@ -62,7 +62,7 @@ $acl->rule('articles.create');
 $acl->rule('articles.update');
 
 // Create role.
-$guestRole = new Role(1, 'guest');
+$guestRole = new Role('guest');
 
 // Adding permissions on role.
 $guestRole->addPermissions(['articles.read']);
