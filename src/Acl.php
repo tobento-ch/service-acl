@@ -152,11 +152,10 @@ class Acl implements AclInterface
         {
             foreach($role->areas() as $area)
             {
-                $this->rolesByArea[$area][$role->id()] = $role;    
+                $this->rolesByArea[$area][$role->key()] = $role;    
             }
-                            
-            $this->roles['id'][$role->id()] = $role;
-            $this->roles['key'][$role->key()] = $role;
+            
+            $this->roles[$role->key()] = $role;
         }
         
         return $this;
@@ -165,54 +164,38 @@ class Acl implements AclInterface
     /**
      * Gets the roles.
      *
-     * @param string An area key such as 'frontend'
+     * @param null|string An area key such as 'frontend' or null to get all roles.
      * @return array
      */    
-    public function getRoles(string $area): array
+    public function getRoles(?string $area = null): array
     {
+        if (is_null($area)) {
+            return $this->roles;
+        }
+        
         return $this->rolesByArea[$area] ?? [];
     }
 
     /**
-     * Gets the role by id.
+     * Gets the role by key.
      *
-     * @param int|string The role id or key.
+     * @param string The role key such as 'frontend'.
      * @return null|RoleInterface
      */    
-    public function getRole(int|string $roleIdOrKey): ?RoleInterface
+    public function getRole(string $key): ?RoleInterface
     {
-        if (is_int($roleIdOrKey)) {
-            
-            return $this->roles['id'][$roleIdOrKey] ?? null;
-        }
-
-        if (is_string($roleIdOrKey)) {
-            
-            return $this->roles['key'][$roleIdOrKey] ?? null;
-        }
-                
-        return null;
+        return $this->roles[$key] ?? null;
     }
 
     /**
-     * Gets the role by id.
+     * Whether a role by key exists.
      *
-     * @param int|string The role id or key.
+     * @param string The role key such as 'frontend'.
      * @return bool If role exists.
      */    
-    public function hasRole(int|string $roleIdOrKey): bool
+    public function hasRole(string $key): bool
     {
-        if (is_int($roleIdOrKey)) {
-            
-            return isset($this->roles['id'][$roleIdOrKey]);
-        }
-
-        if (is_string($roleIdOrKey)) {
-            
-            return isset($this->roles['key'][$roleIdOrKey]);
-        }
-            
-        return false;
+        return isset($this->roles[$key]);
     }
         
     /**

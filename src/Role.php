@@ -23,29 +23,17 @@ class Role implements RoleInterface
     /**
      * Create a new Role
      *
-     * @param int A role id.
      * @param string A role key such as 'editor'.
      * @param array The areas for the role ['frontend', 'api'].
      * @param bool If the role is active.
      * @param int A role name such as 'Editor'.
      */    
     public function __construct(
-        protected int $id,
         protected string $key,
         protected array $areas = ['frontend'],
         protected bool $active = true,
         protected null|string $name = null,
     ) {}
-    
-    /**
-     * Get the id
-     *
-     * @return string
-     */
-    public function id(): int
-    {
-        return $this->id;
-    }
     
     /**
      * Get the key

@@ -80,26 +80,26 @@ interface AclInterface extends Permissionable
     /**
      * Gets the roles.
      *
-     * @param string An area key such as 'frontend'
+     * @param null|string An area key such as 'frontend' or null to get all roles.
      * @return array
      */    
-    public function getRoles(string $area): array;
+    public function getRoles(?string $area = null): array;
 
     /**
-     * Gets the role by id.
+     * Gets the role by key.
      *
-     * @param int|string The role id or key.
+     * @param string The role key such as 'frontend'.
      * @return null|RoleInterface
      */    
-    public function getRole(int|string $roleIdOrKey): ?RoleInterface;
+    public function getRole(string $key): ?RoleInterface;
 
     /**
-     * Gets the role by id.
+     * Whether a role by key exists.
      *
-     * @param int|string The role id or key.
+     * @param string The role key such as 'frontend'.
      * @return bool If role exists.
      */    
-    public function hasRole(int|string $roleIdOrKey): bool;
+    public function hasRole(string $key): bool;
         
     /**
      * Gets the rules.

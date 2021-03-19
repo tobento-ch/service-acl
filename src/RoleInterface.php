@@ -17,14 +17,7 @@ namespace Tobento\Service\Acl;
  * RoleInterface
  */
 interface RoleInterface extends Permissionable
-{
-    /**
-     * Get the id
-     *
-     * @return string
-     */
-    public function id(): int;
-    
+{    
     /**
      * Get the key
      *

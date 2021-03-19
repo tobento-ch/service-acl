@@ -70,20 +70,19 @@ class AclTest extends TestCase
     {
         $acl = new Acl();
         
-        $guest = new Role(1, 'guest');
-        $editor = new Role(2, 'editor');
+        $guest = new Role('guest');
+        $editor = new Role('editor');
         
         $acl->setRoles([$guest, $editor]);
         
         $roles = $acl->getRoles('frontend');
         
         $this->assertSame([], $acl->getRoles('backend'));
-        $this->assertTrue($acl->hasRole(1));
         $this->assertTrue($acl->hasRole('guest'));
         $this->assertFalse($acl->hasRole('admin'));
-        $this->assertSame($guest, $roles[1]);
-        $this->assertSame($editor, $roles[2]);
-        $this->assertSame($guest, $acl->getRole(1));
+        $this->assertSame($guest, $roles['guest']);
+        $this->assertSame($editor, $roles['editor']);
+        $this->assertSame($guest, $acl->getRole('guest'));
         $this->assertSame($editor, $acl->getRole('editor'));
     }
 
@@ -91,20 +90,19 @@ class AclTest extends TestCase
     {
         $acl = new Acl();
         
-        $guest = new Role(1, 'guest', ['backend']);
-        $editor = new Role(2, 'editor', ['backend']);
+        $guest = new Role('guest', ['backend']);
+        $editor = new Role('editor', ['backend']);
         
         $acl->setRoles([$guest, $editor]);
         
         $roles = $acl->getRoles('backend');
         
         $this->assertSame([], $acl->getRoles('frontend'));
-        $this->assertTrue($acl->hasRole(1));
         $this->assertTrue($acl->hasRole('guest'));
         $this->assertFalse($acl->hasRole('admin'));
-        $this->assertSame($guest, $roles[1]);
-        $this->assertSame($editor, $roles[2]);
-        $this->assertSame($guest, $acl->getRole(1));
+        $this->assertSame($guest, $roles['guest']);
+        $this->assertSame($editor, $roles['editor']);
+        $this->assertSame($guest, $acl->getRole('guest'));
         $this->assertSame($editor, $acl->getRole('editor'));
     }
     
@@ -167,8 +165,8 @@ class AclTest extends TestCase
         
         $acl->addPermissions(['articles.read', 'articles.create']);
                 
-        $guestRole = new Role(1, 'guest', ['frontend']);
-        $editorRole = new Role(2, 'editor', ['backend']);
+        $guestRole = new Role('guest', ['frontend']);
+        $editorRole = new Role('editor', ['backend']);
         
         $user = (new User('Nick'))->setRole($guestRole);
         
