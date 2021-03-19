@@ -106,28 +106,6 @@ class AclTest extends TestCase
         $this->assertSame($editor, $acl->getRole('editor'));
     }
     
-    public function testSetAreasAndGetAreaKey()
-    {
-        $acl = new Acl();
-        
-        $acl->setAreas(['frontend' => 1, 'backend' => 2]);
-        
-        $this->assertSame('frontend', $acl->getAreaKey(1));
-        $this->assertSame(null, $acl->getAreaKey(3));
-    }
-
-    public function testSetAndGetAreasToRules()
-    {
-        $acl = new Acl();
-        
-        $acl->setAreasToRules(['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]);
-        
-        $areasToRules = $acl->getAreasToRules();
-        
-        $this->assertSame(['frontend'], $areasToRules['frontend']);
-        $this->assertSame(['backend', 'frontend'], $areasToRules['backend']);
-    }
-    
     public function testPermissionsFailsIfCurrentUserIsNotSet()
     {
         $acl = new Acl();
@@ -157,9 +135,7 @@ class AclTest extends TestCase
     public function testPermissionsCurrentUserWithRole()
     {
         $acl = new Acl();
-        
-        $acl->setAreasToRules(['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]);
-        
+                
         $acl->rule('articles.read')->area('frontend');
         $acl->rule('articles.create')->area('backend');
         

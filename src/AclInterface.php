@@ -107,35 +107,4 @@ interface AclInterface extends Permissionable
      * @return array The rules
      */    
     public function getRules(): array;
-
-    /**
-     * Sets the areas.
-     *
-     * @param array The areas such as ['frontend' => 1, ...]
-     * @return static $this
-     */    
-    public function setAreas(array $areas): static;
-
-    /**
-     * Gets the area key by its id.
-     *
-     * @param int The area id.
-     * @return null|string The area key such as 'frontend', or null if not exist.
-     */    
-    public function getAreaKey(int $id): ?string;
-
-    /**
-     * Sets the areas to rules areas allowed.
-     *
-     * @param array ['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]
-     * @return static $this
-     */    
-    public function setAreasToRules(array $areasToRules): static;
-
-    /**
-     * Gets the areas to rules.
-     *
-     * @return array ['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]
-     */    
-    public function getAreasToRules(): array;
 }

@@ -38,17 +38,7 @@ class Acl implements AclInterface
     /**
      * @var array The roles by area.
      */    
-    protected array $rolesByArea = [];
-
-    /**
-     * @var array The areas such as ['frontend' => 1, ...]
-     */    
-    protected array $areas = [];
-
-    /**
-     * @var array The areas to rules such as ['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]
-     */    
-    protected array $areasToRules = [];    
+    protected array $rolesByArea = [];   
 
     /**
      * Set the current user.
@@ -206,55 +196,7 @@ class Acl implements AclInterface
     public function getRules(): array
     {
         return $this->rules;
-    }
-
-    /**
-     * Sets the areas.
-     *
-     * @param array The areas such as ['frontend' => 1, ...]
-     * @return static $this
-     */    
-    public function setAreas(array $areas): static
-    {
-        $this->areas = $areas;
-        
-        return $this;
-    }
-
-    /**
-     * Gets the area key by its id.
-     *
-     * @param int The area id.
-     * @return null|string The area key such as 'frontend', or null if not exist.
-     */    
-    public function getAreaKey(int $id): ?string
-    {
-        $areas = array_flip($this->areas);
-        return $areas[$id] ?? null;
-    }    
-
-    /**
-     * Sets the areas to rules areas allowed.
-     *
-     * @param array ['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]
-     * @return static $this
-     */    
-    public function setAreasToRules(array $areasToRules): static
-    {
-        $this->areasToRules = $areasToRules;
-        
-        return $this;
-    }
-
-    /**
-     * Gets the areas to rules.
-     *
-     * @return array ['frontend' => ['frontend'], 'backend' => ['backend', 'frontend']]
-     */    
-    public function getAreasToRules(): array
-    {
-        return $this->areasToRules;
-    }    
+    }  
     
     /**
      * Gets a rule or null
