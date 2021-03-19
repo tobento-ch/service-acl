@@ -144,17 +144,17 @@ class Acl implements AclInterface
      * Sets the roles.
      *
      * @param array The roles.
-     * @param null|string An area key such as 'frontend'. If null it takes the area from the role.
      * @return static $this
      */    
-    public function setRoles(array $roles, ?string $area = null): static
+    public function setRoles(array $roles): static
     {
         foreach($roles as $role)
         {
-            $roleArea = $area ?: $role->area();
-            
-            $this->rolesByArea[$roleArea][$role->id()] = $role;
-                
+            foreach($role->areas() as $area)
+            {
+                $this->rolesByArea[$area][$role->id()] = $role;    
+            }
+                            
             $this->roles['id'][$role->id()] = $role;
             $this->roles['key'][$role->key()] = $role;
         }

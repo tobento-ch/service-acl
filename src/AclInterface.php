@@ -73,10 +73,9 @@ interface AclInterface extends Permissionable
      * Sets the roles.
      *
      * @param array The roles.
-     * @param null|string An area key such as 'frontend'. If null it takes the area from the role.
      * @return static $this
      */    
-    public function setRoles(array $roles, ?string $area = null): static;
+    public function setRoles(array $roles): static;
     
     /**
      * Gets the roles.
