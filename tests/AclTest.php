@@ -91,8 +91,8 @@ class AclTest extends TestCase
     {
         $acl = new Acl();
         
-        $guest = new Role(1, 'guest', 'backend');
-        $editor = new Role(2, 'editor', 'backend');
+        $guest = new Role(1, 'guest', ['backend']);
+        $editor = new Role(2, 'editor', ['backend']);
         
         $acl->setRoles([$guest, $editor]);
         
