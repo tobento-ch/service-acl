@@ -515,6 +515,8 @@ if ($acl->cant(key: 'articles.read', user: $user)) {
 
 Checking permissions on Authorizable object:
 
+For more information on Helper Function visit [tobento/helper-function](https://github.com/tobento-ch/helper-function)
+
 ```php
 use Tobento\Service\HelperFunction\Functions;
 use Psr\Container\ContainerInterface;
