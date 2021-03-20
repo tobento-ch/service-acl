@@ -24,7 +24,7 @@ class VerifyInputPermissions
      * @param AclInterface
      */    
     public function __construct(
-        protected AclInterface $acl,
+        protected AclInterface $acl
     ) {}
     
     /**
@@ -43,7 +43,7 @@ class VerifyInputPermissions
             // input key to ruleKey
             $key = str_replace(array('_'), array('.'), $key);
             
-            if ($value !== '1') {
+            if ($value != true) {
                 continue;
             }
             

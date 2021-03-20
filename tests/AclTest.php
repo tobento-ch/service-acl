@@ -24,13 +24,6 @@ use Tobento\Service\Acl\Rule;
  */
 class AclTest extends TestCase
 {
-    private $acl;
-    
-    public function setUp(): void
-    {
-        $this->acl = new Acl();
-    }
-
     public function testSetAndGetCurrentUser()
     {
         $acl = new Acl();
@@ -91,17 +84,19 @@ class AclTest extends TestCase
         $acl = new Acl();
         
         $guest = new Role('guest', ['backend']);
-        $editor = new Role('editor', ['backend']);
+        $editor = new Role('editor', ['backend', 'api']);
         
         $acl->setRoles([$guest, $editor]);
         
         $roles = $acl->getRoles('backend');
+        $apiRoles = $acl->getRoles('api');
         
         $this->assertSame([], $acl->getRoles('frontend'));
         $this->assertTrue($acl->hasRole('guest'));
         $this->assertFalse($acl->hasRole('admin'));
         $this->assertSame($guest, $roles['guest']);
         $this->assertSame($editor, $roles['editor']);
+        $this->assertSame($editor, $apiRoles['editor']);
         $this->assertSame($guest, $acl->getRole('guest'));
         $this->assertSame($editor, $acl->getRole('editor'));
     }
@@ -118,7 +113,7 @@ class AclTest extends TestCase
         $this->assertFalse($acl->can('articles.update'));     
     }
 
-    public function testPermissionsFailsCurrentUserWithNoRole()
+    public function testPermissionsFailsIfCurrentUserWithNoRole()
     {
         $acl = new Acl();
         
@@ -132,7 +127,7 @@ class AclTest extends TestCase
         $this->assertFalse($acl->can('articles.update'));     
     }
 
-    public function testPermissionsCurrentUserWithRole()
+    public function testPermissionsCurrentUser()
     {
         $acl = new Acl();
                 
@@ -149,7 +144,102 @@ class AclTest extends TestCase
         $acl->setCurrentUser($user);
         
         $this->assertTrue($acl->can('articles.read'));
-        //$this->assertTrue($acl->can('articles.create'));
-        //$this->assertFalse($acl->can('articles.update'));     
+        $this->assertFalse($acl->can('articles.update'));     
+    }
+
+    public function testPermissionsCurrentUserWithRolePermission()
+    {
+        $acl = new Acl();
+                
+        $acl->rule('articles.read')->area('frontend');
+        $acl->rule('articles.create')->area('backend');
+        $acl->rule('articles.update')->area('backend');
+        $acl->rule('articles.delete')->area('backend');
+        
+        $acl->addPermissions(['articles.read', 'articles.create']);
+                
+        $role = new Role('editor', ['backend', 'frontend']);
+        $role->addPermissions(['articles.update']);
+        
+        $user = (new User('Nick'))->setRole($role);
+        
+        $acl->setCurrentUser($user);
+        
+        $this->assertTrue($acl->can('articles.read'));
+        $this->assertTrue($acl->can('articles.update'));
+        $this->assertFalse($acl->can('articles.delete'));
+    }
+
+    public function testPermissionsCurrentUserWithRoleAndUserPermission()
+    {
+        $acl = new Acl();
+                
+        $acl->rule('articles.read')->area('frontend');
+        $acl->rule('articles.create')->area('backend');
+        $acl->rule('articles.update')->area('backend');
+        $acl->rule('articles.delete')->area('backend');
+        
+        $acl->addPermissions(['articles.read', 'articles.create']);
+                
+        $role = new Role('editor', ['backend', 'frontend']);
+        $role->addPermissions(['articles.update']);
+        
+        $user = (new User('Nick'))->setRole($role);
+        $user->addPermissions(['articles.delete']);
+        
+        $acl->setCurrentUser($user);
+        
+        $this->assertTrue($acl->can('articles.read'));
+        $this->assertFalse($acl->can('articles.update')); // false as user permission
+        $this->assertTrue($acl->can('articles.delete'));
+    }
+
+    public function testPermissionsSepecificUser()
+    {
+        $acl = new Acl();
+                
+        $acl->rule('articles.read')->area('frontend');
+        $acl->rule('articles.create')->area('backend');
+        $acl->rule('articles.update')->area('backend');
+        $acl->rule('articles.delete')->area('backend');
+        
+        $acl->addPermissions(['articles.read', 'articles.create']);
+                
+        $role = new Role('editor', ['backend', 'frontend']);
+        $role->addPermissions(['articles.update']);
+        
+        $user = (new User('Nick'))->setRole($role);
+        $user->addPermissions(['articles.delete']);
+        
+        $this->assertFalse($acl->can(key: 'articles.read', user: $user));
+        $this->assertFalse($acl->can(key: 'articles.update', user: $user));
+        $this->assertTrue($acl->can(key: 'articles.delete', user: $user));
+    }
+
+    public function testMulitplePermissionsOnCanMethod()
+    {
+        $acl = new Acl();
+        
+        $acl->rule('articles.read');
+        $acl->rule('articles.create');
+        $acl->rule('articles.update');
+        $acl->rule('articles.delete');
+        
+        $acl->addPermissions(['articles.read', 'articles.create']);
+        
+        $user = (new User('Nick'))->setRole(new Role('editor', ['frontend']));
+        $acl->setCurrentUser($user);
+        
+        $tom = (new User('Tom'))->setRole(new Role('editor', ['frontend']));
+        $tom->addPermissions(['articles.read', 'articles.create']);
+        
+        $this->assertTrue($acl->can('articles.read|articles.create'));
+        $this->assertFalse($acl->can('articles.read|articles.delete'));
+        
+        $this->assertFalse($acl->can(key: 'articles.read|articles.create', user: $user));
+        $this->assertFalse($acl->can(key: 'articles.read|articles.delete', user: $user));
+        
+        $this->assertTrue($acl->can(key: 'articles.read|articles.create', user: $tom));
+        $this->assertFalse($acl->can(key: 'articles.read|articles.delete', user: $tom));
     }     
 }
