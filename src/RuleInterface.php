@@ -54,6 +54,13 @@ interface RuleInterface
     public function getArea(): string;
 
     /**
+     * If the rule requires permissions to match the rule.
+     *
+     * @return bool
+     */    
+    public function requiresPermission(): bool;    
+
+    /**
      * Return if the rule matches the criteria.
      *
      * @param AclInterface

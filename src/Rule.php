@@ -167,7 +167,7 @@ class Rule implements RuleInterface
         }
         
         // check if permission is given.
-        if ($this->needsPermission)
+        if ($this->requiresPermission())
         {
             // area check
             if (!in_array($this->getArea(), $user->role()->areas())) {
@@ -224,9 +224,19 @@ class Rule implements RuleInterface
     {
         return $this->area;
     }
+ 
+    /**
+     * If the rule requires permissions to match the rule.
+     *
+     * @return bool
+     */    
+    public function requiresPermission(): bool
+    {
+        return $this->needsPermission;
+    }
     
     /**
-     * Set if the rule needs permission set on acl to be granted.
+     * Set if the rule requires permissions to match the rule.
      *
      * @param bool True needs permission, otherwise false.
      * @return RuleInterface

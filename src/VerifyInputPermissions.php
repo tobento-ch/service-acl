@@ -56,7 +56,11 @@ class VerifyInputPermissions
             }
             
             $rule = $this->acl->getRule($key);
-        
+ 
+            if (! $rule->requiresPermission()) {
+                continue;
+            }
+            
             if (!in_array($rule->getArea(), $allowedAreaKeys)) {
                 continue;
             }
