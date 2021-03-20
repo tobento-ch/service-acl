@@ -33,6 +33,7 @@ composer require tobento/acl
 ## Highlights
 
 - Framework-agnostic, will work with any project
+- Customize permission behaviour
 - Decoupled design
 
 ## Simple Example
