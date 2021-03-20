@@ -31,14 +31,9 @@ class Acl implements AclInterface
     protected array $rules = [];
     
     /**
-     * @var array The roles.
+     * @var array The roles. ['frontend' => RoleInterface]
      */    
-    protected array $roles = [];
-
-    /**
-     * @var array The roles by area.
-     */    
-    protected array $rolesByArea = [];   
+    protected array $roles = []; 
 
     /**
      * Set the current user.
@@ -144,11 +139,6 @@ class Acl implements AclInterface
                 continue;
             }
             
-            foreach($role->areas() as $area)
-            {
-                $this->rolesByArea[$area][$role->key()] = $role;    
-            }
-            
             $this->roles[$role->key()] = $role;
         }
         
@@ -167,7 +157,7 @@ class Acl implements AclInterface
             return $this->roles;
         }
         
-        return $this->rolesByArea[$area] ?? [];
+        return array_filter($this->roles, fn($role) => in_array($area, $role->areas()));
     }
 
     /**
