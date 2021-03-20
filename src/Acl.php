@@ -198,7 +198,7 @@ class Acl implements AclInterface
      * @param string The rule key. 'user.create'
      * @return null|RuleInterface Null if rule does not exist.
      */    
-    protected function getRule(string $ruleKey): ?RuleInterface
+    public function getRule(string $ruleKey): ?RuleInterface
     {
         return $this->rules[$ruleKey] ?? null;
     }

@@ -107,4 +107,12 @@ interface AclInterface extends Permissionable
      * @return array The rules
      */    
     public function getRules(): array;
+
+    /**
+     * Gets a rule or null
+     *
+     * @param string The rule key. 'user.create'
+     * @return null|RuleInterface Null if rule does not exist.
+     */    
+    public function getRule(string $ruleKey): ?RuleInterface;    
 }
