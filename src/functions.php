@@ -45,3 +45,19 @@ if (!function_exists('can')) {
         return $acl->can($key, $parameters, $user);
     }
 }
+
+if (!function_exists('cant')) {
+    /**
+     * Helper function $acl->cant().
+     *
+     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array Any parameters for custom handler
+     * @param null|Authorizable If null current user is taken.
+     * @return bool True on success, false on failure.
+     */
+    function cant(string $key, array $parameters = [], ?Authorizable $user = null): bool
+    {
+        $acl = Functions::get(ContainerInterface::class)->get(AclInterface::class);
+        return $acl->cant($key, $parameters, $user);
+    }
+}

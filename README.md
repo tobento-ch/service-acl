@@ -494,6 +494,87 @@ $hasPermissions = $acl->hasPermissions();
 $hasPermission = $acl->hasPermission('user.update');
 ```
 
+Available methods for checking permissions on acl:
+
+```php
+use Tobento\Service\Acl\Acl;
+
+// Create Acl.
+$acl = new Acl();
+
+// Check permissions for current user.
+if ($acl->can('articles.read')) {
+    // user has permission to read articles.
+}
+
+// Check permission for specific user.
+if ($acl->cant(key: 'articles.read', user: $user)) {
+    // user has not permission to read articles.
+}
+```
+
+Checking permissions on Authorizable object:
+
+```php
+use Tobento\Service\HelperFunction\Functions;
+use Psr\Container\ContainerInterface;
+use Tobento\Service\Di\Container;
+use Tobento\Service\Acl\Acl;
+use Tobento\Service\Acl\AclInterface;
+use Tobento\Service\Acl\Authorizable;
+use Tobento\Service\Acl\AuthorizableAware;
+use Tobento\Service\Acl\Role;
+
+// create container.
+$container = new Container();
+
+// Set up Helper Function acl() for supporting
+// checking permission directly on Authorizable objects.
+$functions = new Functions();
+$functions->set(ContainerInterface::class, $container);
+
+// Register Acl functions.
+$functions->register('dir/to/acl/functions.php');
+
+// User class example.
+class User implements Authorizable
+{
+    use AuthorizableAware;
+    
+    public function __construct(
+        protected string $name,
+    ) {}
+}
+
+// Create Acl.
+$acl = new Acl();
+
+// Add Acl to container.
+$container->set(AclInterface::class, $acl);
+
+// Adding rules.
+$acl->rule('articles.read');
+
+// Create role.
+$guestRole = new Role('guest');
+
+// Adding permissions on role.
+$guestRole->addPermissions(['articles.read']);
+
+// Create and set user role.
+$user = (new User('Nick'))->setRole($guestRole);
+
+// Check permissions on user.
+if ($user->can('articles.read')) {
+    // user has permission to read articles.
+}
+
+// check permission for specific user.
+if ($user->cant('articles.read')) {
+    // user has not permission to read articles.
+}
+```
+
 ## Roles
 
 Working with roles.
