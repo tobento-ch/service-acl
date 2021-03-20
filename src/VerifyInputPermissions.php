@@ -37,8 +37,7 @@ class VerifyInputPermissions
     public function verify(array $permissions, RoleInterface $role): array
     {
         $verified = [];
-        $areaKey = $role->area();
-        $allowedAreaKeys = $this->acl->getAreasToRules()[$areaKey] ?? [];
+        $allowedAreaKeys = $role->areas();
         
         foreach($permissions as $key => $value) {
             // input key to ruleKey
