@@ -511,6 +511,16 @@ if ($acl->can('articles.read')) {
 if ($acl->cant(key: 'articles.read', user: $user)) {
     // user has not permission to read articles.
 }
+
+// You can check multiple permissions too.
+if ($acl->can('articles.create|articles.update')) {
+    // user has permission to read articles.
+}
+
+// Multiple permissions with parameters.
+if ($acl->can('articles.create|resource', ['resource' => [$article->getUser()]])) {
+    // user has permission to read articles.
+}
 ```
 
 Checking permissions on Authorizable object:
