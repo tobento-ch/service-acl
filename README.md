@@ -514,12 +514,12 @@ if ($acl->cant(key: 'articles.read', user: $user)) {
 
 // You can check multiple permissions too.
 if ($acl->can('articles.create|articles.update')) {
-    // user has permission to read articles.
+    // user has permission to create and update articles.
 }
 
 // Multiple permissions with parameters.
 if ($acl->can('articles.create|resource', ['resource' => [$article->getUser()]])) {
-    // user has permission to read articles.
+    // user has permission to create and access the specific article.
 }
 ```
 
