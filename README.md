@@ -23,7 +23,7 @@ ___
 Add the latest version of the Acl service running this command.
 
 ```
-composer require tobento/acl
+composer require tobento/service-acl
 ```
 
 ## Requirements
