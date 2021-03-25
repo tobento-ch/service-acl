@@ -1,5 +1,5 @@
 {
-    "name": "tobento/acl",
+    "name": "tobento/service-acl",
     "type": "library",
     "description": "A simple role and user-level access control system.",
     "keywords": [
@@ -21,7 +21,7 @@
     "require": {
         "php": ">=8.0",
         "psr/container": "^1.0 || ^2.0",
-        "tobento/helper-function": "^1.0"
+        "tobento/service-helper-function": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
@@ -38,8 +38,5 @@
     },
     "scripts": {
         "test": "phpunit --testdox --colors=always"
-    },
-    "suggest": {
-        "tobento/model": "Needed to support role model."
     }
 }
