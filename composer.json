@@ -20,7 +20,8 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.0",
-        "tobento/service-helper-function": "^1.0"
+        "tobento/service-helper-function": "^1.0",
+        "psr/container": "^1.0 || ^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
