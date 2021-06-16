@@ -85,5 +85,25 @@ class VerifyInputPermissionsTest extends TestCase
         );        
         
         $this->assertSame(['articles.create'], $verifiedPermissions);
+    }
+
+    public function testVerifyPermissionsWithInvalidArrayIndexes()
+    {
+        $acl = new Acl();
+        $acl->rule('articles.read');
+        $acl->rule('articles.create');
+        $acl->rule('articles.update');
+        $acl->rule('articles.delete');
+        
+        $editor = new Role('editor');
+        
+        $verifier = new VerifyInputPermissions($acl);
+        
+        $verifiedPermissions = $verifier->verify(
+            [0 => '', 1 => []],
+            $editor
+        );        
+        
+        $this->assertSame([], $verifiedPermissions);
     }    
 }
