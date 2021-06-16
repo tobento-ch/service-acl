@@ -40,9 +40,7 @@ class VerifyInputPermissions
         $allowedAreaKeys = $role->areas();
         
         foreach($permissions as $key => $value) {
-            // input key to ruleKey
-            $key = str_replace(array('_'), array('.'), $key);
-            
+                    
             if ($value != true) {
                 continue;
             }
@@ -50,6 +48,9 @@ class VerifyInputPermissions
             if (!is_string($key)) {
                 continue;
             }
+            
+            // input key to ruleKey
+            $key = str_replace(array('_'), array('.'), $key);
                 
             if ($this->acl->getRule($key) === null) {
                 continue;

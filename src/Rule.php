@@ -31,7 +31,7 @@ class Rule implements RuleInterface
     protected string $description = '';
 
     /**
-     * @var callable The handler.
+     * @var null|callable The handler.
      */    
     protected $handler = null;
 
