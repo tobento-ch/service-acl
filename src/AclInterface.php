@@ -21,7 +21,7 @@ interface AclInterface extends Permissionable
     /**
      * Set the current user.
      *
-     * @param Authorizable
+     * @param Authorizable $user
      * @return static $this
      */    
     public function setCurrentUser(Authorizable $user): static;
@@ -36,7 +36,7 @@ interface AclInterface extends Permissionable
     /**
      * Create and adds a new Rule.
      *
-     * @param string A rule key
+     * @param string $key A rule key
      * @return Rule
      */    
     public function rule(string $key): Rule;
@@ -44,7 +44,7 @@ interface AclInterface extends Permissionable
     /**
      * Adds a rule.
      *
-     * @param RuleInterface
+     * @param RuleInterface $rule
      * @return static $this
      */    
     public function addRule(RuleInterface $rule): static;
@@ -52,9 +52,9 @@ interface AclInterface extends Permissionable
     /**
      * Check if the given permission are set.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable If null current user is taken.
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user If null current user is taken.
      * @return bool True on success, false on failure.
      */    
     public function can(string $key, array $parameters = [], ?Authorizable $user = null): bool;
@@ -62,9 +62,9 @@ interface AclInterface extends Permissionable
     /**
      * Check if permission is not given.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable If null current user is taken.
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user If null current user is taken.
      * @return bool True no permission, false has permission.
      */    
     public function cant(string $key, array $parameters = [], ?Authorizable $user = null): bool;
@@ -72,7 +72,7 @@ interface AclInterface extends Permissionable
     /**
      * Sets the roles.
      *
-     * @param array The roles [RoleInterface, ...]
+     * @param array $roles The roles [RoleInterface, ...]
      * @return static $this
      */    
     public function setRoles(array $roles): static;
@@ -80,7 +80,7 @@ interface AclInterface extends Permissionable
     /**
      * Gets the roles.
      *
-     * @param null|string An area key such as 'frontend' or null to get all roles.
+     * @param null|string $area An area key such as 'frontend' or null to get all roles.
      * @return array
      */    
     public function getRoles(?string $area = null): array;
@@ -88,7 +88,7 @@ interface AclInterface extends Permissionable
     /**
      * Gets the role by key.
      *
-     * @param string The role key such as 'frontend'.
+     * @param string $key The role key such as 'frontend'.
      * @return null|RoleInterface
      */    
     public function getRole(string $key): ?RoleInterface;
@@ -96,7 +96,7 @@ interface AclInterface extends Permissionable
     /**
      * Whether a role by key exists.
      *
-     * @param string The role key such as 'frontend'.
+     * @param string $key The role key such as 'frontend'.
      * @return bool If role exists.
      */    
     public function hasRole(string $key): bool;
@@ -111,7 +111,7 @@ interface AclInterface extends Permissionable
     /**
      * Gets a rule or null
      *
-     * @param string The rule key. 'user.create'
+     * @param string $ruleKey The rule key. 'user.create'
      * @return null|RuleInterface Null if rule does not exist.
      */    
     public function getRule(string $ruleKey): ?RuleInterface;    

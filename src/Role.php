@@ -23,10 +23,10 @@ class Role implements RoleInterface
     /**
      * Create a new Role
      *
-     * @param string A role key such as 'editor'.
-     * @param array The areas for the role ['frontend', 'api'].
-     * @param bool If the role is active.
-     * @param int A role name such as 'Editor'.
+     * @param string $key A role key such as 'editor'.
+     * @param array $areas The areas for the role ['frontend', 'api'].
+     * @param bool $active If the role is active.
+     * @param null|string $name A role name such as 'Editor'.
      */    
     public function __construct(
         protected string $key,

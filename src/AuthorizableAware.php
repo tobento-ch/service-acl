@@ -26,8 +26,8 @@ trait AuthorizableAware
     /**
      * Check if the given permission are set.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
      * @return bool True on success, false on failure.
      */    
     public function can(string $key, array $parameters = []): bool
@@ -38,8 +38,8 @@ trait AuthorizableAware
     /**
      * Check if permission is not given.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
      * @return bool True no permission, false has permission.
      */    
     public function cant(string $key, array $parameters = []): bool

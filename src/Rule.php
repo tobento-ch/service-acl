@@ -48,7 +48,7 @@ class Rule implements RuleInterface
     /**
      * Create a new Rule
      *
-     * @param string The key such as 'user.create'. Important: use only dot as separater.
+     * @param string $key The key such as 'user.create'. Important: use only dot as separater.
      */    
     public function __construct(
         protected string $key
@@ -77,7 +77,7 @@ class Rule implements RuleInterface
     /**
      * Set a title.
      *
-     * @param string A title.
+     * @param string $title A title.
      * @return RuleInterface
      */    
     public function title(string $title): RuleInterface
@@ -103,7 +103,7 @@ class Rule implements RuleInterface
     /**
      * Set a description.
      *
-     * @param string A description
+     * @param string $description A description
      * @return Rule
      */    
     public function description(string $description): RuleInterface
@@ -125,10 +125,10 @@ class Rule implements RuleInterface
     /**
      * Return if the rule matches the criteria.
      *
-     * @param AclInterface
-     * @param string A permission key 'user.create'.
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable
+     * @param AclInterface $acl
+     * @param string $key A permission key 'user.create'.
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user
      * @return bool True if rule matches, otherwise false
      */    
     public function matches(
@@ -192,7 +192,7 @@ class Rule implements RuleInterface
     /**
      * Set the handler.
      *
-     * @param callable
+     * @param callable $handler
      * @return RuleInterface
      *
      * @callable must return bool. True for permission given, otherwhise false.
@@ -206,7 +206,7 @@ class Rule implements RuleInterface
     /**
      * Set the area
      *
-     * @param string
+     * @param string $area
      * @return RuleInterface
      */    
     public function area(string $area): RuleInterface
@@ -238,7 +238,7 @@ class Rule implements RuleInterface
     /**
      * Set if the rule requires permissions to match the rule.
      *
-     * @param bool True needs permission, otherwise false.
+     * @param bool $needsPermission True needs permission, otherwise false.
      * @return RuleInterface
      */    
     public function needsPermission(bool $needsPermission): RuleInterface
@@ -250,8 +250,8 @@ class Rule implements RuleInterface
     /**
      * Collect permissions from the user.
      *
-     * @param Authorizable
-     * @param AclInterface
+     * @param Authorizable $user
+     * @param AclInterface $acl
      * @return array The permissions such as ['user.create', 'user.update']
      */    
     protected function collectPermissions(Authorizable $user, AclInterface $acl): array
@@ -279,8 +279,8 @@ class Rule implements RuleInterface
     /**
      * Calls the rule handler.
      *
-     * @param array Any parameters.
-     * @param Authorizable
+     * @param array $parameters Any parameters.
+     * @param Authorizable $user
      * @return bool True on permission given, false on not permission given.
      */    
     protected function callRuleHandler(array $parameters, Authorizable $user): bool

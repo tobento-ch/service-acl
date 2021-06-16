@@ -34,9 +34,9 @@ if (!function_exists('can')) {
     /**
      * Helper function $acl->can().
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable If null current user is taken.
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user If null current user is taken.
      * @return bool True on success, false on failure.
      */
     function can(string $key, array $parameters = [], ?Authorizable $user = null): bool
@@ -50,9 +50,9 @@ if (!function_exists('cant')) {
     /**
      * Helper function $acl->cant().
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable If null current user is taken.
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user If null current user is taken.
      * @return bool True on success, false on failure.
      */
     function cant(string $key, array $parameters = [], ?Authorizable $user = null): bool

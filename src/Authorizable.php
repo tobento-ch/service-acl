@@ -21,8 +21,8 @@ interface Authorizable extends Permissionable
     /**
      * Check if the given permission are set.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
      * @return bool True on success, false on failure.
      */    
     public function can(string $key, array $parameters = []): bool;
@@ -30,8 +30,8 @@ interface Authorizable extends Permissionable
     /**
      * Check if permission is not given.
      *
-     * @param string A permission key 'user.create' or multiple keys 'user.create|user.update'
-     * @param array Any parameters for custom handler
+     * @param string $key A permission key 'user.create' or multiple keys 'user.create|user.update'
+     * @param array $parameters Any parameters for custom handler
      * @return bool True no permission, false has permission.
      */    
     public function cant(string $key, array $parameters = []): bool;
@@ -39,7 +39,7 @@ interface Authorizable extends Permissionable
     /**
      * Sets the roleKey
      *
-     * @param string
+     * @param string $roleKey
      * @return static $this
      */
     public function setRoleKey(string $roleKey): static;
@@ -54,7 +54,7 @@ interface Authorizable extends Permissionable
     /**
      * Sets the role.
      *
-     * @param null|RoleInterface
+     * @param null|RoleInterface $role
      * @return static $this
      */    
     public function setRole(?RoleInterface $role = null): static;

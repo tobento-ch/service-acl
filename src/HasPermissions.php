@@ -26,7 +26,7 @@ trait HasPermissions
     /**
      * Set the permissions.
      *
-     * @param array The permissions ['user.create', 'user.update']
+     * @param array $permissions The permissions ['user.create', 'user.update']
      * @return static $this
      */    
     public function setPermissions(array $permissions): static
@@ -39,7 +39,7 @@ trait HasPermissions
     /**
      * Add permissions.
      *
-     * @param array The permissions ['user.create', 'user.update']
+     * @param array $permissions The permissions ['user.create', 'user.update']
      * @return static $this
      */    
     public function addPermissions(array $permissions): static
@@ -72,7 +72,7 @@ trait HasPermissions
     /**
      * Has the permission.
      *
-     * @return bool True on success, otherwise false.
+     * @return bool $key True on success, otherwise false.
      */    
     public function hasPermission(string $key): bool
     {

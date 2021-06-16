@@ -63,10 +63,10 @@ interface RuleInterface
     /**
      * Return if the rule matches the criteria.
      *
-     * @param AclInterface
-     * @param string A permission key 'user.create'.
-     * @param array Any parameters for custom handler
-     * @param null|Authorizable
+     * @param AclInterface $acl
+     * @param string $key A permission key 'user.create'.
+     * @param array $parameters Any parameters for custom handler
+     * @param null|Authorizable $user
      * @return bool True if rule matches, otherwise false
      */    
     public function matches(

@@ -21,7 +21,7 @@ class VerifyInputPermissions
     /**
      * Create a new VerifyInputPermissions
      *
-     * @param AclInterface
+     * @param AclInterface $acl
      */    
     public function __construct(
         protected AclInterface $acl
@@ -30,9 +30,9 @@ class VerifyInputPermissions
     /**
      * Verifies input permissions.
      *
-     * @param array The input permissions ['user_create' => 0, 'user_update' => 1]
-     * @param RoleInterface
-     * @return The verified permissions ['user_create', 'user_update']
+     * @param array $permissions The input permissions ['user_create' => 0, 'user_update' => 1]
+     * @param RoleInterface $role
+     * @return array The verified permissions ['user_create', 'user_update']
      */    
     public function verify(array $permissions, RoleInterface $role): array
     {

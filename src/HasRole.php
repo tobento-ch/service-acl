@@ -31,7 +31,7 @@ trait HasRole
     /**
      * Sets the roleKey
      *
-     * @param string
+     * @param string $roleKey
      * @return static $this
      */
     public function setRoleKey(string $roleKey): static
@@ -53,7 +53,7 @@ trait HasRole
     /**
      * Sets the role.
      *
-     * @param null|RoleInterface
+     * @param null|RoleInterface $role
      * @return static $this
      */    
     public function setRole(?RoleInterface $role = null): static
