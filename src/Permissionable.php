@@ -33,6 +33,14 @@ interface Permissionable
      * @return static $this
      */    
     public function addPermissions(array $permissions): static;
+    
+    /**
+     * Remove permissions.
+     *
+     * @param array $permissions The permissions ['user.create', 'user.update'] to remove.
+     * @return static $this
+     */
+    public function removePermissions(array $permissions): static;
 
     /**
      * Get the permissions.
@@ -40,6 +48,13 @@ interface Permissionable
      * @return array The permissions ['user.create', 'user.update']
      */    
     public function getPermissions(): array;
+    
+    /**
+     * Has permissions.
+     *
+     * @return bool
+     */
+    public function hasPermissions(): bool;
 
     /**
      * Has the permission.
