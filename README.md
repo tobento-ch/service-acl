@@ -490,6 +490,9 @@ $permissions = $acl->getPermissions(); // ['user.create', 'user.update', 'user.d
 // Has any permissions at all.
 $hasPermissions = $acl->hasPermissions();
 
+// Removing permissions.
+$acl->removePermissions(['user.delete']);
+
 // Has specific permission.
 $hasPermission = $acl->hasPermission('user.update');
 ```
