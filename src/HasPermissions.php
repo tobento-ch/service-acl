@@ -48,6 +48,19 @@ trait HasPermissions
         
         return $this;
     }
+    
+    /**
+     * Remove permissions.
+     *
+     * @param array $permissions The permissions ['user.create', 'user.update'] to remove.
+     * @return static $this
+     */
+    public function removePermissions(array $permissions): static
+    {
+        $this->permissions = array_diff($this->permissions, $permissions);
+        
+        return $this;
+    }
 
     /**
      * Get the permissions.
