@@ -54,6 +54,22 @@ class HasPermissionTraitTest extends TestCase
         $this->assertSame(['user.create', 'user.update', 'user.delete'], array_values($acl->getPermissions()));
         $this->assertNotSame(['user.create', 'user.read'], array_values($acl->getPermissions()));
     }
+    
+    public function testRemovePermissions()
+    {
+        $acl = new Acl();
+        
+        $acl->removePermissions(['user.create']);
+        $this->assertSame([], array_values($acl->getPermissions()));
+        
+        $acl->setPermissions(['user.create', 'user.update', 'user.delete']);
+        $acl->removePermissions(['user.create', 'user.delete']);
+        
+        $this->assertSame(['user.update'], array_values($acl->getPermissions()));
+        
+        $acl->removePermissions(['user.create', 'user.update']);
+        $this->assertSame([], array_values($acl->getPermissions()));
+    }
 
     public function testHasPermissions()
     {
