@@ -73,5 +73,21 @@ class Role implements RoleInterface
     public function name(): string
     {
         return $this->name ?: ucfirst($this->key());
-    }    
+    }
+    
+    /**
+     * __get For array_column object support
+     */
+    public function __get(string $name): mixed
+    {
+        return $this->$name;
+    }
+
+    /**
+     * __isset For array_column object support
+     */
+    public function __isset(string $name): bool
+    {
+        return isset($this->$name);
+    }
 }
