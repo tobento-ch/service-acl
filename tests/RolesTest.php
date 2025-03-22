@@ -105,6 +105,18 @@ class RolesTest extends TestCase
         $this->assertSame(['editor', 'guest'], array_keys($roles->area('foo')->all()));
         $this->assertSame(['editor'], array_keys($roles->area('bar')->all()));
     }
+
+    public function testColumnMethod()
+    {
+        $this->assertSame([], (new Roles())->column('key'));
+        
+        $editor = new Role(key: 'editor', name: 'Editor');
+        $guest = new Role(key: 'guest', name: 'Guest');
+        $roles = new Roles($editor, $guest);
+        
+        $this->assertSame(['editor', 'guest'], $roles->column('key'));
+        $this->assertSame(['editor' => 'Editor', 'guest' => 'Guest'], $roles->column('name', 'key'));
+    }
     
     public function testAllMethod()
     {
