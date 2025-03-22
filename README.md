@@ -668,6 +668,10 @@ $roles = $roles->remove('editor');
 $role = $roles->first();
 // null|RoleInterface
 
+// Get column of roles:
+$roleNames = $roles->column('name');
+$roleNamesByKey = $roles->column('name', 'key');
+
 // Get all roles:
 $roles = $roles->all();
 $roles = $acl->getRoles(); // or
