@@ -157,6 +157,18 @@ class Roles implements RolesInterface
     }
     
     /**
+     * Get the column of the roles.
+     *
+     * @param string $column The column such as 'name'.
+     * @param null|string $index The index such as 'key'.
+     * @return array
+     */
+    public function column(string $column, null|string $index = null): array
+    {
+        return array_column($this->roles, $column, $index);
+    }
+    
+    /**
      * Returns a new instance only with the roles specified.
      *
      * @param array $roles
