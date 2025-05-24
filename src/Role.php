@@ -78,16 +78,16 @@ class Role implements RoleInterface
     /**
      * __get For array_column object support
      */
-    public function __get(string $name): mixed
+    public function __get(string $prop)
     {
-        return $this->$name;
+        return $this->{$prop}();
     }
 
     /**
      * __isset For array_column object support
      */
-    public function __isset(string $name): bool
+    public function __isset(string $prop): bool
     {
-        return isset($this->$name);
+        return method_exists($this, $prop);
     }
 }
