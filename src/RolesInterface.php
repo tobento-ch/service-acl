@@ -16,7 +16,7 @@ namespace Tobento\Service\Acl;
 use IteratorAggregate;
 
 /**
- * RolesInterface
+ * @extends IteratorAggregate<string, RoleInterface>
  */
 interface RolesInterface extends IteratorAggregate
 {

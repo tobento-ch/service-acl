@@ -193,7 +193,7 @@ class Roles implements RolesInterface
     /**
      * Get the iterator.
      *
-     * @return Traversable
+     * @return Traversable<string, RoleInterface>
      */
     public function getIterator(): Traversable
     {    
