@@ -28,7 +28,7 @@ composer require tobento/service-acl
 
 ## Requirements
 
-- PHP 8.0 or greater
+- PHP 8.4 or greater
 
 ## Highlights
 
@@ -74,7 +74,7 @@ $guestRole = new Role('guest');
 $guestRole->addPermissions(['articles.read']);
 
 // Create and set user role.
-$user = (new User('Nick'))->setRole($guestRole);
+$user = new User('Nick')->setRole($guestRole);
 
 // Adding permissions on user.
 // If permissions are set on user, role permissions will not count anymore.
@@ -147,7 +147,7 @@ $acl->rule('articles.update');
 $role = new Role('guest');
 
 // Create and set user role.
-$user = (new User('Nick'))->setRole($role);
+$user = new User('Nick')->setRole($role);
 
 // Adding permissions on acl, only for current user.
 $acl->addPermissions(['articles.read']);
@@ -453,7 +453,7 @@ $role = new Role('guest');
 $role->addPermissions(['articles.read']);
 
 // Create and set user role.
-$user = (new User('Nick'))->setRole($role);
+$user = new User('Nick')->setRole($role);
 $user->addPermissions(['articles.create']);
 
 // Set current user.
@@ -577,7 +577,7 @@ $guestRole = new Role('guest');
 $guestRole->addPermissions(['articles.read']);
 
 // Create and set user role.
-$user = (new User('Nick'))->setRole($guestRole);
+$user = new User('Nick')->setRole($guestRole);
 
 // Check permissions on user.
 if ($user->can('articles.read')) {

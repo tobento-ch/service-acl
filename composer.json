@@ -1,5 +1,6 @@
 {
     "name": "tobento/service-acl",
+    "version": "2.0",
     "type": "library",
     "description": "A simple role and user-level access control system.",
     "keywords": [
@@ -19,14 +20,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.0",
-        "tobento/service-helper-function": "^1.0",
-        "psr/container": "^1.0 || ^2.0"
+        "php": ">=8.4",
+        "tobento/service-helper-function": "^2.0",
+        "psr/container": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "vimeo/psalm": "^4.0"
-    },    
+        "phpunit/phpunit": "^12.3",
+        "vimeo/psalm": "^6.13"
+    },
     "autoload": {
         "psr-4": {
             "Tobento\\Service\\Acl\\": "src"
